@@ -19,7 +19,7 @@ B Fold<A, B>(List<A> list, B initial, Func<B, A, B> folder)
 
 List<B> Map2<A, B>(List<A> list, Func<A, B> f)
 {
-    return Fold<A, List<B>>(list, new List<B>(), (sum, x) => new List<B>(sum) { f(x) });
+    return Fold<A, List<B>>(list, new List<B>(), (sum, x) => { sum.Add(f(x)); return sum; });
 }
 
 var addOneRses = Map2<int, int>(new List<int> { 1, 2, 3 }, (value) => value + 1);
